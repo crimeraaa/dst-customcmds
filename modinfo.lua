@@ -1,23 +1,22 @@
--- name = "Custom Console Commands (Local)" --this is just so in testing i use the "Local" version which is clearly separated from the workshop version.
-name = "Custom Console Commands"
-author = "Crimeraaa"
+name = "Custom Console Commands (Local)" --this is just so in testing i use the "Local" version which is clearly separated from the workshop version.
+-- name = "Custom Console Commands"
+author = "crimeraaa"
 description = 
-[[Server-side commands you can use from the console (open it using the ` key!)
-
-This is also designed to help Server Hosters run some simple commands directly from the terminal window.
+[[
+Custom remote console commands you can use from the console. This is also designed to help Server Hosters run some useful commands directly from the terminal window.
 
 The possible commands are:
 
-c_countall(prefab, mode)
-c_giveall(prefab, count)
-c_giveto(playernum, prefab, count)
-c_creativeon() / c_creativeoff() / c_creativeall()
-c_godmodeon() / c_godmodeoff() / c_godmodeall()
-c_spawnbeef(tendency, playernum, saddle)
+`c_countall(prefab, mode)`
+`c_giveall(prefab, count)` and `c_giveto(playernum, prefab, count)`
+`c_creativeon()`, `c_creativeoff()` and `c_creativeall()`
+`c_godmodeon()`, `c_godmodeoff()` and `c_godmodeall()`
+`c_spawnbeef(tendency, playernum, saddle)`
 
+For more information run `c_listcmd()` or `c_helpcmd()`.
 ]]
 
-version = "1.2.0"
+version = "1.2.4"
 api_version = 10
 
 dst_compatible = true 
