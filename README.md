@@ -5,43 +5,52 @@ You must either be an ingame admin or a Server Hoster to make use of these funct
 
 # The Commands
 
+## List Command
+
+> `c_listcmd()`
+
+Will print out in the console the list of general syntax for each command as well as the `Help Key` you can input for `c_helpcmd(key)`.
+
+## Help Commands
+
+> `c_helpcmd(key)`
+
+If called as is `c_helpcmd()` it will print out in the console a list of `Help Keys`. Each `Help Key` can be used as an input string for the command to get more detailed information on that specific command. 
+
 ## Count All of a Prefab and Announce
 
-> `c_countall(prefab, mode)`
+> `c_countall(prefab, ..., mode)`
 
-Counts all instances of a specified in the shard. Stacksizes are taken into consideration, and number of stacks will be separate should stacksizes greater than 1 exist. It always prints out the result in the console.
+Counts all instances of specified in the shard. The `...` indicates a variable argument, meaning that you can include as many prefabs as you like. 
 
-Parameter `prefab` is just a string of the prefab's ingame code. For example, `"beefalo"` is the prefab code for Beefalo. `wathgrithr` is the prefab code for Wigfrid.
+Stack sizes are taken into consideration, and number of stacks will be separate should stack sizes greater than 1 exist. It always prints out the result in the console.
 
-Parameter `mode` lets you specify how you can announce it to chat. 
+Parameter `prefab` is just a string of the prefab's ingame code. For example, `"beefalo"` is the prefab code for Beefalo. `"wathgrithr"` is the prefab code for Wigfrid, and so on.
+
+Parameter `mode` lets you specify how you can announce it to chat. It can be a boolean or a number from 0-3. It can be omitted and the command will default to a Server Announcement. If you do want to include it, make sure it is the very last argument in the command as that is the only index it will check.
 
 ### Options for `mode`
 
 None of the below options are strings. They are either `nil`, `number` or `boolean`.
 
-> `nil` input (or even typing out `nil` as is) defaults to announcing the count in chat, directly from the server.
+> `nil` input (or even typing out `nil` as is) defaults to a Server Announcement with no printout to console, as the Server Announcement itself is reflected there.
 > 
-> `0` input makes your character talk and a global chat message is sent from you.
-> 
-> `1` input makes your character talk and a whisper chat message is sent from you.
-> 
-> `2` input sends a local chat message which only you can see.
-> 
-> `3` and `true` do the same as `nil`.
+> `0`, `1` and `2` makes your character talk and sends a global, whisper or local chat message respectively. It always prints to console at the same time.
+>
+> `3` and `true` do the same as `nil`; they run a Server Announcement.
 > 
 > `false` will not announce it to any form of chat. The only form of response is in the console printout.
 
-### Give an amount of a Prefab
+## Give Prefabs
 
 > `c_giveall(prefab, count)`
 > 
-> `c_giveto(playernum, prefab, count)`
+> `c_giveto(num, prefab, count)`
 
 Similar to the `c_give(prefab)` command. The `prefab` parameter is always a string which represents a prefab code. It should also always be an `inventoryitem`, as you can't give mobs to players' inventories for example.
 
 The `count` parameter is optional and will default to number `1`. If it is specified, it should always be a number.
 
-Both functions work the exact same as `c_give`. 
 `c_giveall` will give everybody in the server the number of prefab specified. 
 `c_giveto` will give the number of prefab specified to that exact player number. 
 
@@ -58,7 +67,7 @@ The reason I created `c_giveto` was because the normal `c_give` command only app
 Allows you to choose Creative Mode for all players. 
 `c_creativeon()` always, well, activates it for everybody on the shard. 
 `c_creativeoff()` deactivates it.
-`c_creativeall()` toggles between on and off. This may cause some confusion if some folks went up from a different shard after this command was called.
+`c_creativeall()` toggles between on and off. It uses a local variable `switcharoo1` to toggle, so it is independent of any one player's creative mode boolean. You can input `true` or `false` to specifically set it if you'd like as well.
 
 ## Godmode Commands
 
@@ -71,14 +80,14 @@ Allows you to choose Creative Mode for all players.
 Allows you to choose (Super) Godmode for all players. 
 `c_godmodeon()` always, well, activates it for everybody on the shard. 
 `c_godmodeoff()` deactivates it.
-`c_godmodeall()` toggles between on and off. This may cause some confusion if some folks went up from a different shard after this command was called.
+`c_godmodeall()` toggles between on and off. It uses a local variable `switcharoo2` to toggle, so it is independent of any one player's godmode boolean. You can input `true` or `false` to specifically set it if you'd like as well.
 
 ## Spawn Tamed Beefalo for a Player
 
-> `c_spawnbeef(tendency, playernum, saddle)`
+> `c_spawnbeef(tendency, num, saddle)`
 
 Parameter `tendency` can be set to `"DEFAULT"`, `"RIDER"`, `"ORNERY"` or `"PUDGY"`. 
 
-Parameter `playernum` is self explanatory I hope. They will be given a Beefalo Bell, and also act as the location where the Beefalo is spawned.
+Parameter `num` refers to the player number of the person you'd like to spawn the Beefalo on. They will be given a Beefalo Bell, and also act as the location where the Beefalo is spawned.
 
-Parameter `saddle` lets you choose what saddle for this Beefalo. If `nil`, it will default to the Glossamer Saddle.
+Parameter `saddle` lets you choose what saddle for this Beefalo. If none specified, it will default to the Glossamer Saddle. You can either input the full prefab code (e.g. `"saddle_basic"`) or simply use only the second word, e.g. `"race"` as this command will prefix `"saddle_"` to your input string if that pattern is not found.
