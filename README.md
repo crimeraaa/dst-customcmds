@@ -29,9 +29,11 @@ Stack sizes are taken into consideration, and number of stacks will be separate 
 
 Parameter `prefab` is just a string of the prefab's ingame code. For example, `"beefalo"` is the prefab code for Beefalo. `"wathgrithr"` is the prefab code for Wigfrid, and so on.
 
-Parameter `mode` lets you specify how you can announce it to chat. It can be a boolean or a number from 0-3. It can be omitted and the command will default to a Server Announcement. If you do want to include it, make sure it is the very last argument in the command as that is the only index it will check.
+Parameter `mode` lets you specify how you can announce it to chat. It can be omitted and the command will default to a Server Announcement. If you do want to include it, make sure it is the very last argument in the command as that is the only index it will check.
 
 ### Options for `mode`
+
+`mode` must always be a boolean.
 
 > `true` will run a Server Announcement.
 > 
