@@ -20,8 +20,10 @@ If called as is `c_helpcmd()` it will print out in the console a list of `Help K
 ## Count All of a Prefab and Announce
 
 > `c_countall(prefab, ..., mode)`
+> 
+> `c_removeall(prefab, ..., mode)`
 
-Counts all instances of specified in the shard. The `...` indicates a variable argument, meaning that you can include as many prefabs as you like. 
+Counts or removes all instances of specified in the shard. The `...` indicates a variable argument, meaning that you can include as many prefabs as you like. 
 
 Stack sizes are taken into consideration, and number of stacks will be separate should stack sizes greater than 1 exist. It always prints out the result in the console.
 
@@ -31,13 +33,7 @@ Parameter `mode` lets you specify how you can announce it to chat. It can be a b
 
 ### Options for `mode`
 
-None of the below options are strings. They are either `nil`, `number` or `boolean`.
-
-> `nil` input (or even typing out `nil` as is) defaults to a Server Announcement with no printout to console, as the Server Announcement itself is reflected there.
-> 
-> `0`, `1` and `2` makes your character talk and sends a global, whisper or local chat message respectively. It always prints to console at the same time.
->
-> `3` and `true` do the same as `nil`; they run a Server Announcement.
+> `true` will run a Server Announcement.
 > 
 > `false` will not announce it to any form of chat. The only form of response is in the console printout.
 
@@ -84,10 +80,21 @@ Allows you to choose (Super) Godmode for all players.
 
 ## Spawn Tamed Beefalo for a Player
 
-> `c_spawnbeef(tendency, num, saddle)`
+> `c_spawnbeef(num, tendency, saddle)`
 
-Parameter `tendency` can be set to `"DEFAULT"`, `"RIDER"`, `"ORNERY"` or `"PUDGY"`. 
 
 Parameter `num` refers to the player number of the person you'd like to spawn the Beefalo on. They will be given a Beefalo Bell, and also act as the location where the Beefalo is spawned.
 
-Parameter `saddle` lets you choose what saddle for this Beefalo. If none specified, it will default to the Glossamer Saddle. You can either input the full prefab code (e.g. `"saddle_basic"`) or simply use only the second word, e.g. `"race"` as this command will prefix `"saddle_"` to your input string if that pattern is not found.
+Parameter `tendency` can be set to `"DEFAULT"`, `"RIDER"`, `"ORNERY"` or `"PUDGY"`. 
+
+Optional Parameter `saddle` lets you choose what saddle for this Beefalo. If none specified, it will default to the Glossamer Saddle. You can either input the full prefab code (e.g. `"saddle_basic"`) or simply use only the second word, e.g. `"race"` as this command will prefix `"saddle_"` to your input string if that pattern is not found.
+
+## Check, Add or Remove Tags for a Player
+
+> `c_checktags(num, tag, ...)`
+> 
+> `c_addtags(num, tag, ...)`
+> 
+> `c_removetags(num, tag, ...)`
+
+For a specifc player number, check/add/remove the variable input tags.
